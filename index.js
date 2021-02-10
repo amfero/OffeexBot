@@ -29,4 +29,8 @@ bot.on('chat', (username, message) => {
         if(username === bot.username) return;
         bot.chat('фит пидорас')
     }
+    if(message.toLowerCase().includes(bot.username)) {
+        if(username === bot.username) return;
+        bot.chat('Отъебись реАЛЬНо')
+    }
 });

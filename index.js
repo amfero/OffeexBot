@@ -59,9 +59,9 @@ bot.on('chat', (username, message) => {
 });
 
 bot.on('playerJoined', (player) => {
-    bot.chat(`Че пришел ${player}`)
+    bot.chat(`Че пришел ${player.username}`)
 });
 
 bot.on('playerLeft', (player) => {
-    bot.chat(`Изи слит опущ ${player}`)
+    bot.chat(`Изи слит опущ ${player.username}`)
 });

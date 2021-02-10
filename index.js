@@ -1,4 +1,5 @@
 var mineflayer = require('mineflayer');
+const { brotliCompress } = require('zlib');
 
 var bot = mineflayer.createBot({
     host: 'localhost',
@@ -55,4 +56,12 @@ bot.on('chat', (username, message) => {
         bot.setControlState('left', false)
         bot.setControlState('right', false)
     }
+});
+
+bot.on('playerJoined', (player) => {
+    bot.chat(`Че пришел ${player}`)
+});
+
+bot.on('playerLeft', (player) => {
+    bot.chat(`Изи слит опущ ${player}`)
 });

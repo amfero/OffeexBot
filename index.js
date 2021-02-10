@@ -33,4 +33,26 @@ bot.on('chat', (username, message) => {
         if(username === bot.username) return;
         bot.chat('Отъебись реАЛЬНо')
     }
+    if(message == '$forward') {
+        bot.setControlState('forward', true)
+    }
+    if(message == '$back') {
+        bot.setControlState('back', true)
+    }
+    if(message == '$left') {
+        bot.setControlState('left', true)
+    }
+    if(message == '$right') {
+        bot.setControlState('right', true)
+    }
+    if(message == '$jump') {
+        bot.setControlState('jump', true)
+    }
+    if(message == '$stop') {
+        bot.setControlState('jump', false)
+        bot.setControlState('forward', false)
+        bot.setControlState('back', false)
+        bot.setControlState('left', false)
+        bot.setControlState('right', false)
+    }
 });

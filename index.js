@@ -57,11 +57,3 @@ bot.on('chat', (username, message) => {
         bot.setControlState('right', false)
     }
 });
-
-bot.on('playerJoined', (player) => {
-    bot.chat(`Че пришел ${player.username}`)
-});
-
-bot.on('playerLeft', (player) => {
-    bot.chat(`Изи слит опущ ${player.username}`)
-});

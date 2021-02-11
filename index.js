@@ -41,6 +41,7 @@ bot.on('chat', (username, message) => {
         bot.chat('Отъебись реАЛЬНо')
     }
     if (message.startsWith('$пиздинг')) {
+        if(username === bot.username) return;
         var text = message.split(' ').slice(1).join(' ');
         var player = bot.players[text]
         if (!player) {
@@ -49,7 +50,49 @@ bot.on('chat', (username, message) => {
     }  
     bot.pvp.attack(player.entity)
     }
-    if (message === '$stop') {
+    if(message === '$алмазы') {
+        if(username === bot.username) return;
+            var GoalBlock = goals.GoalBlock
+            const mcData = require('minecraft-data')(bot.version)
+            const movements = new Movements(bot, mcData)
+            movements.scafoldingBlocks = []
+            bot.pathfinder.setMovements(movements)
+        
+            const diamodeOre = bot.findBlock({
+                matching: mcData.blocksByName.diamond_ore.id,
+                maxDistance: 64
+            })
+        
+            if (!diamodeOre) {
+                bot.chat("Нет алмазов")
+                return
+            }
+        
+            const x = diamodeOre.position.x
+            const y = diamodeOre.position.y + 1
+            const z = diamodeOre.position.z
+            bot.chat(`x:${x} y:${y} z:${z}`)
+            const goal = new GoalBlock(x, y, z)
+            bot.pathfinder.setGoal(goal)
+        }
+    if(message.startsWith('$пиздуй')) {
+        if(username === bot.username) return;
+        var GoalFollow = goals.GoalFollow
+        var text = message.split(' ').slice(1).join(' ');
+        var player = bot.players[text]
+        if (!player || !player.entity) {
+            bot.chat("Где кого за кем нахуй")
+            return
+        }
+        const mcData = require('minecraft-data')(bot.version)
+        const movements = new Movements(bot, mcData)
+        movements.scafoldingBlocks = []
+        bot.pathfinder.setMovements(movements)
+        const goal = new GoalFollow(player.entity, 1)
+        bot.pathfinder.setGoal(goal, true)
+    }
+    if(message === '$stop') {
         bot.pvp.stop()
+        bot.pathfinder.setMovements(null); bot.pathfinder.setGoal(null); bot.clearControlStates();
     }
 });

@@ -74,8 +74,7 @@ bot.on('chat', (username, message) => {
         }
     if(lowercase.startsWith('$пиздуй')) {
         var GoalFollow = goals.GoalFollow
-        var 
-        = message.split(' ').slice(1).join(' ');
+        var text = message.split(' ').slice(1).join(' ');
         var player = bot.players[text]
         if (!player || !player.entity) {
             bot.chat("Где кого за кем нахуй")

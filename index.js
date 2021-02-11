@@ -4,9 +4,9 @@ var { pathfinder, Movements, goals} = require('mineflayer-pathfinder')
 var armorManager = require('mineflayer-armor-manager')
 
 var bot = mineflayer.createBot({
-    host: 'localhost',
-    port: 59427,
-    username: 'Offeex'
+    host: '82.146.42.193',
+    port: 25565,
+    username: 'Offeex',
 });
 
 bot.loadPlugin(pvp)
@@ -18,7 +18,7 @@ bot.on('spawn', () => {
 });
 
 bot.on('chat', (username, message) => {
-    if (message.startsWith('text')) {
+    if (message.startsWith('$text')) {
         if (username === bot.username) return;
         var text = message.split(' ').slice(1).join(' ');
         bot.chat(text);

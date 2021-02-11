@@ -1,11 +1,17 @@
-var mineflayer = require('mineflayer');
-const { brotliCompress } = require('zlib');
+var mineflayer = require('mineflayer')
+var pvp = require('mineflayer-pvp').plugin
+var { pathfinder, Movements, goals} = require('mineflayer-pathfinder')
+var armorManager = require('mineflayer-armor-manager')
 
 var bot = mineflayer.createBot({
     host: 'localhost',
-    port: 52354,
+    port: 59427,
     username: 'Offeex'
 });
+
+bot.loadPlugin(pvp)
+bot.loadPlugin(armorManager)
+bot.loadPlugin(pathfinder)
 
 bot.on('spawn', () => {
     bot.chat('Я извиняюсь перед новым байкалом я тупая свинья хохлятская всем извините особенно амферо');
@@ -34,26 +40,15 @@ bot.on('chat', (username, message) => {
         if(username === bot.username) return;
         bot.chat('Отъебись реАЛЬНо')
     }
-    if(message == '$forward') {
-        bot.setControlState('forward', true)
+    if (message.startsWith('$пиздинг')) {
+        var player = bot.players[username]
+        if (!player) {
+        bot.chat("ты где блядь")
+        return
+    }  
+    bot.pvp.attack(player.entity)
     }
-    if(message == '$back') {
-        bot.setControlState('back', true)
-    }
-    if(message == '$left') {
-        bot.setControlState('left', true)
-    }
-    if(message == '$right') {
-        bot.setControlState('right', true)
-    }
-    if(message == '$jump') {
-        bot.setControlState('jump', true)
-    }
-    if(message == '$stop') {
-        bot.setControlState('jump', false)
-        bot.setControlState('forward', false)
-        bot.setControlState('back', false)
-        bot.setControlState('left', false)
-        bot.setControlState('right', false)
+    if (message === '$stop') {
+        bot.pvp.stop()
     }
 });

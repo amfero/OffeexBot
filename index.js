@@ -18,6 +18,16 @@ bot.on('spawn', () => {
     bot.chat('Я извиняюсь перед новым байкалом я тупая свинья хохлятская всем извините особенно амферо');
 });
 
+function lookAtNearestPlayer () {
+    const playerFilter = (entity) => entity.type === 'player'
+    const playerEntity = bot.nearestEntity(playerFilter)
+    if (!playerEntity) return
+    const pos = playerEntity.position.offset(0, playerEntity.height, 0)
+    bot.lookAt(pos)
+}
+  
+bot.on('physicTick', lookAtNearestPlayer)
+
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
     if (message.startsWith('$text')) {
@@ -92,5 +102,6 @@ bot.on('chat', (username, message) => {
         bot.pathfinder.setMovements(null);
         bot.pathfinder.setGoal(null);
         bot.clearControlStates();
+        bot.lookAt
     }
 });

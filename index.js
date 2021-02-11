@@ -36,10 +36,10 @@ bot.on('chat', (username, message) => {
     lowercase.includes('фит')) {
         bot.chat('фит пидорас')
     }
-    if(lowercasr.includes(bot.username)) {
+    if(lowercase.includes(bot.username)) {
         bot.chat('Отъебись реАЛЬНо')
     }
-    if (message.startsWith('$пиздинг')) {
+    if (lowercase.startsWith('$пиздинг')) {
         var text = message.split(' ').slice(1).join(' ');
         var player = bot.players[text]
         if (!player) {
@@ -48,7 +48,7 @@ bot.on('chat', (username, message) => {
         }
         bot.pvp.attack(player.entity)
     }
-    if(message === '$алмазы') {
+    if(lowercase.startsWith('$алмазы')) {
             var GoalBlock = goals.GoalBlock
             const mcData = require('minecraft-data')(bot.version)
             const movements = new Movements(bot, mcData)
@@ -72,7 +72,7 @@ bot.on('chat', (username, message) => {
             const goal = new GoalBlock(x, y, z)
             bot.pathfinder.setGoal(goal)
         }
-    if(message.startsWith('$пиздуй')) {
+    if(lowercase.startsWith('$пиздуй')) {
         var GoalFollow = goals.GoalFollow
         var text = message.split(' ').slice(1).join(' ');
         var player = bot.players[text]
@@ -87,7 +87,7 @@ bot.on('chat', (username, message) => {
         const goal = new GoalFollow(player.entity, 1)
         bot.pathfinder.setGoal(goal, true)
     }
-    if(message === '$stop') {
+    if(lowercase.startsWith('$stop')) {
         bot.pvp.stop()
         bot.pathfinder.setMovements(null);
         bot.pathfinder.setGoal(null);

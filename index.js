@@ -20,7 +20,7 @@ bot.on('spawn', () => {
 
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
-    if (message.startsWith('text')) {
+    if (message.startsWith('$text')) {
       var text = message.split(' ').slice(1).join(' ');
       bot.chat(text)
     }

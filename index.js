@@ -41,9 +41,10 @@ bot.on('chat', (username, message) => {
         bot.chat('Отъебись реАЛЬНо')
     }
     if (message.startsWith('$пиздинг')) {
-        var player = bot.players[username]
+        var text = message.split(' ').slice(1).join(' ');
+        var player = bot.players[text]
         if (!player) {
-        bot.chat("ты где блядь")
+        bot.chat("ну и кого мне пиздить")
         return
     }  
     bot.pvp.attack(player.entity)

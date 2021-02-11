@@ -21,8 +21,8 @@ bot.on('spawn', () => {
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
     if (message.startsWith('text')) {
-        var text = message.split(' ').slice(1).join(' ');
-        bot.chat(text);
+      var text = message.split(' ').slice(1).join(' ');
+      bot.chat(text)
     }
     var lowercase = message.toLowerCase();
     if(lowercase.includes('rockez') ||
@@ -74,7 +74,8 @@ bot.on('chat', (username, message) => {
         }
     if(lowercase.startsWith('$пиздуй')) {
         var GoalFollow = goals.GoalFollow
-        var text = message.split(' ').slice(1).join(' ');
+        var 
+        = message.split(' ').slice(1).join(' ');
         var player = bot.players[text]
         if (!player || !player.entity) {
             bot.chat("Где кого за кем нахуй")

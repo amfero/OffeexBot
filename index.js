@@ -4,10 +4,12 @@ var { pathfinder, Movements, goals} = require('mineflayer-pathfinder')
 var armorManager = require('mineflayer-armor-manager')
 var config = require("./config.json");
 
+var commandlasttime = 0;
+
 var bot = mineflayer.createBot({
     host: config.ip,
-    port: config.port,
-    username: config.username
+    username: config.username,
+    password: config.password
 });
 
 bot.loadPlugin(pvp)
@@ -30,6 +32,8 @@ bot.on('physicTick', lookAtNearestPlayer)
 
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
+    if(commandlasttime > Date.now()) return;
+    commandlasttime = Date.now() + 4000;
     if (message.startsWith('$text')) {
       var text = message.split(' ').slice(1).join(' ');
       bot.chat(text)

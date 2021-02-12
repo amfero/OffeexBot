@@ -33,7 +33,7 @@ bot.on('physicTick', lookAtNearestPlayer)
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
     if(commandlasttime > Date.now()) return;
-    commandlasttime = Date.now() + 4000;
+    commandlasttime = Date.now() + 2000;
     if (message.startsWith('$text')) {
       var text = message.split(' ').slice(1).join(' ');
       bot.chat(text)

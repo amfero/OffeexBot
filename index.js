@@ -20,21 +20,11 @@ bot.on('spawn', () => {
     bot.chat('Я извиняюсь перед новым байкалом я тупая свинья хохлятская всем извините особенно амферо');
 });
 
-function lookAtNearestPlayer () {
-    const playerFilter = (entity) => entity.type === 'player'
-    const playerEntity = bot.nearestEntity(playerFilter)
-    if (!playerEntity) return
-    const pos = playerEntity.position.offset(0, playerEntity.height, 0)
-    bot.lookAt(pos)
-}
-  
-bot.on('physicTick', lookAtNearestPlayer)
-
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
+    if (message.startsWith('$text')) {
     if(commandlasttime > Date.now()) return;
     commandlasttime = Date.now() + 2000;
-    if (message.startsWith('$text')) {
       var text = message.split(' ').slice(1).join(' ');
       bot.chat(text)
     }

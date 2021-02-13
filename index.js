@@ -17,6 +17,8 @@ bot.loadPlugin(armorManager)
 bot.loadPlugin(pathfinder)
 
 bot.on('spawn', () => {
+    if(commandlasttime > Date.now()) return;
+    commandlasttime = Date.now() + 2000;
     bot.chat('Я извиняюсь перед новым байкалом я тупая свинья хохлятская всем извините особенно амферо');
 });
 

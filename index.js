@@ -8,6 +8,7 @@ var commandlasttime = 0;
 
 var bot = mineflayer.createBot({
     host: config.ip,
+    port: config.port,
     username: config.username,
     password: config.password
 });

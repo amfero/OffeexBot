@@ -8,7 +8,6 @@ var commandlasttime = 0;
 
 var bot = mineflayer.createBot({
     host: config.ip,
-    port: config.port,
     username: config.username,
     password: config.password
 });
@@ -21,19 +20,17 @@ bot.on('playerCollect', (collector, itemDrop) => {
     if (collector !== bot.entity) return
   
     setTimeout(() => {
-      const sword = bot.inventory.items().find(item => item.name.includes('sword'))
-      if (sword) bot.equip(sword, 'hand')
-    }, 150)
+        const sword = bot.inventory.items().find(item => item.name.includes('sword'))
+        const shield = bot.inventory.items().find(item => item.name.includes('shield'))
+        if (sword) bot.equip(sword, 'hand')
+        if (shield) bot.equip(shield, 'off-hand')
+    }, 200)
 })
 
-  bot.on('playerCollect', (collector, itemDrop) => {
-    if (collector !== bot.entity) return
-  
-    setTimeout(() => {
-      const shield = bot.inventory.items().find(item => item.name.includes('shield'))
-      if (shield) bot.equip(shield, 'off-hand')
-    }, 250)
-})
+setInterval(function()
+{
+bot.chat('> https://github.com/amfero/OffeexBot')
+}, 60000);
 
 bot.on('spawn', () => {
     if(commandlasttime > Date.now()) return;

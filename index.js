@@ -22,6 +22,18 @@ bot.on('spawn', () => {
     bot.chat('Я извиняюсь перед новым байкалом я тупая свинья хохлятская всем извините особенно амферо');
 });
 
+bot.on('playerJoined', (player) => {
+    if(commandlasttime > Date.now()) return;
+    commandlasttime = Date.now() + 1000;
+    bot.chat(`Хули зашло ${player.username}`)
+});
+
+bot.on('playerLeft', (player) => {
+    if(commandlasttime > Date.now()) return;
+    commandlasttime = Date.now() + 1000;
+    bot.chat(`Хули ушло ${player.username}`)
+});
+
 bot.on('chat', (username, message) => {
     if (username === bot.username) return;
     if (message.startsWith('$text')) {
